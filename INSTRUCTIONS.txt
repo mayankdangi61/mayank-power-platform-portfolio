@@ -1,0 +1,27 @@
+POWERverse V3 — Anime Expansion
+
+Replace:
+- components/AnimeToggle.tsx
+
+Add:
+- components/AnimeSignature.tsx
+- app/anime-extra.css
+
+Then edit app/layout.tsx:
+Add this line under the existing globals.css import:
+import "./anime-extra.css";
+
+Then edit app/page.tsx:
+1. Add:
+import AnimeSignature from "@/components/AnimeSignature";
+
+2. Find:
+<section id="contact"
+
+3. Add this directly BEFORE that contact section:
+<AnimeSignature/>
+
+Then:
+git add .
+git commit -m "Add manga and anime personality layer"
+git push

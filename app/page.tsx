@@ -6,6 +6,7 @@ import Nav from "@/components/Nav";
 import Reveal from "@/components/Reveal";
 import AutomationGame from "@/components/AutomationGame";
 import AnimeToggle from "@/components/AnimeToggle";
+import AnimeSignature from "@/components/AnimeSignature";
 
 const publicSkills=["Power Apps","Model-Driven Apps","Canvas Apps","Dataverse","Power Automate","Power Pages","Power BI","JavaScript","Power Fx","SharePoint","Microsoft 365","AI-assisted automation"];
 
@@ -144,6 +145,7 @@ export default function Home(){
       <Reveal className="mt-12"><AutomationGame/></Reveal>
       <Reveal className="mt-8"><p className="editorial text-2xl text-slate-400 sm:text-3xl">“Power level calculation is highly questionable.”</p></Reveal>
     </section>
+	<AnimeSignature/>
 
     <section id="contact" className="mx-auto max-w-[1400px] px-4 pb-16 pt-24 sm:px-6 md:px-10 md:pt-32">
       <Reveal>

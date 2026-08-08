@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./anime-extra.css";
 
 export const metadata: Metadata = {
   title: "Mayank Dangi — Power Platform Developer",
