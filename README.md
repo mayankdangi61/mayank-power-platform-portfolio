@@ -1,43 +1,16 @@
-# Mayank Dangi — Power Platform Portfolio
+# Mayank Dangi — Insane Portfolio V2
 
-Animated portfolio website built with:
+Production-ready Next.js portfolio.
 
-- Next.js 14
-- TypeScript
-- Tailwind CSS
-- Framer Motion
-- Lucide Icons
-
-## Run locally
-
-```bash
+## Local
 npm install
 npm run dev
-```
 
-Open `http://localhost:3000`.
+## Update existing GitHub/Vercel deployment
+Replace the matching files in your current repository, then:
 
-## Production build
+git add .
+git commit -m "Launch insane portfolio v2"
+git push
 
-```bash
-npm run build
-npm start
-```
-
-## Deploy to Vercel later
-
-1. Push this folder to GitHub.
-2. Log into Vercel.
-3. Import the GitHub repository.
-4. Keep the detected framework as **Next.js**.
-5. Click **Deploy**.
-
-No environment variables are required for the current version.
-
-## Resume
-
-The resume PDF is stored at:
-
-`public/Mayank_Dangi_Resume.pdf`
-
-and is linked from the navbar.
+Vercel redeploys automatically.

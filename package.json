@@ -1,12 +1,11 @@
 {
-  "name": "mayank-power-platform-portfolio",
-  "version": "1.0.0",
+  "name": "mayank-power-platform-portfolio-insane",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start"
   },
   "dependencies": {
     "framer-motion": "^11.11.17",
