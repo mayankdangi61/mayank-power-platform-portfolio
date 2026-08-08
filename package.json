@@ -1,6 +1,6 @@
 {
-  "name": "mayank-power-platform-portfolio-insane",
-  "version": "2.0.0",
+  "name": "mayank-powerverse-v3",
+  "version": "3.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",

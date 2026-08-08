@@ -1,142 +1,166 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Bot, Boxes, Code2, Database, Globe2, Linkedin, Mail, Sparkles, Workflow, BarChart3 } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, Mail, Linkedin, Sparkles } from "lucide-react";
 import Nav from "@/components/Nav";
 import Reveal from "@/components/Reveal";
-import ProjectCard from "@/components/ProjectCard";
+import AutomationGame from "@/components/AutomationGame";
+import AnimeToggle from "@/components/AnimeToggle";
 
-const stages=["PR","RFQ","Quotation","PO","ASN","GRN","Invoice","Payment"];
-const skillGroups=[
-  {icon:Boxes,title:"Power Apps",items:["Model-Driven Apps","Canvas Apps","Power Fx","Business Rules","BPF"]},
-  {icon:Workflow,title:"Automation",items:["Power Automate","Approvals","Cloud Flows","RPA Exposure","AI Processing"]},
-  {icon:Database,title:"Data",items:["Dataverse","Relational Modeling","Lookups","Security Roles","MySQL"]},
-  {icon:Code2,title:"Extensibility",items:["JavaScript","Ribbon Commands","Form Scripting","REST APIs","HTML/CSS"]},
-  {icon:Globe2,title:"Microsoft Ecosystem",items:["Power Pages","SharePoint","Microsoft 365","Teams","Copilot Studio"]},
-  {icon:BarChart3,title:"Analytics",items:["Power BI","Microsoft Fabric","KPI Reporting","Dashboards","ER Modeling"]},
-];
+const publicSkills=["Power Apps","Model-Driven Apps","Canvas Apps","Dataverse","Power Automate","Power Pages","Power BI","JavaScript","Power Fx","SharePoint","Microsoft 365","AI-assisted automation"];
 
 export default function Home(){
-  const glow=useRef<HTMLDivElement>(null);
-  useEffect(()=>{
-    const timer=setTimeout(()=>document.getElementById("loader")?.classList.add("hide"),1850);
-    const move=(e:MouseEvent)=>{if(glow.current){glow.current.style.left=e.clientX+"px";glow.current.style.top=e.clientY+"px"}};
-    addEventListener("mousemove",move); return()=>{clearTimeout(timer);removeEventListener("mousemove",move)};
-  },[]);
-  return <main className="min-h-screen overflow-x-hidden">
-    <div id="loader" className="loader"><div className="text-center">
-      <div className="text-xl font-semibold text-white sm:text-2xl">Initializing Power Platform Environment…</div>
-      <div className="loader-bar mx-auto"><i/></div><div className="mt-3 font-mono text-xs text-slate-600">loading solution layers</div>
-    </div></div>
-    <div ref={glow} className="cursor-glow"/>
-    <div className="grid-bg pointer-events-none fixed inset-0 -z-10 opacity-25 [mask-image:linear-gradient(to_bottom,black,transparent_95%)]"/>
+  useEffect(()=>{const t=setTimeout(()=>document.getElementById("loader")?.classList.add("hide"),1800);return()=>clearTimeout(t)},[]);
+  return <main>
+    <div id="loader" className="loader">
+      <div className="text-center px-4">
+        <div className="text-2xl font-semibold tracking-[-.03em] sm:text-3xl">Initializing Mayank // Powerverse</div>
+        <div className="loader-line mx-auto"><i/></div>
+        <div className="mt-3 font-mono text-[10px] uppercase tracking-[.18em] text-slate-600">NDA-safe public build</div>
+      </div>
+    </div>
+    <div className="grain"/>
     <Nav/>
+    <AnimeToggle/>
 
-    <section className="relative mx-auto grid min-h-[100svh] max-w-7xl items-center gap-9 px-4 pb-16 pt-28 sm:px-6 md:px-10 lg:grid-cols-[1.08fr_.92fr] lg:gap-12">
-      <div>
-        <motion.div initial={{opacity:0,y:18}} animate={{opacity:1,y:0}} transition={{duration:.6}} className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3.5 py-2 text-xs text-cyan-100 sm:text-sm">
-          <Sparkles size={14}/> Microsoft Power Platform Developer
-        </motion.div>
-        <motion.h1 initial={{opacity:0,y:24}} animate={{opacity:1,y:0}} transition={{duration:.85,delay:.08}}
-          className="max-w-5xl text-[2.6rem] font-semibold leading-[.99] tracking-[-.055em] text-white sm:text-5xl md:text-6xl lg:text-[5.5rem]">
-          I turn enterprise chaos into <span className="text-gradient">systems that move.</span>
-        </motion.h1>
-        <motion.p initial={{opacity:0,y:24}} animate={{opacity:1,y:0}} transition={{duration:.8,delay:.18}}
-          className="mt-6 max-w-2xl text-[15px] leading-7 text-slate-300 sm:text-lg sm:leading-8">
-          Power Apps. Dataverse. Power Automate. JavaScript. Power Pages. Analytics. AI-assisted document processing. Built with an engineering mindset.
+    <section className="relative mx-auto flex min-h-[100svh] max-w-[1400px] flex-col justify-end px-4 pb-10 pt-28 sm:px-6 md:px-10">
+      <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:.7}} className="mb-6 flex items-center gap-2 text-xs uppercase tracking-[.22em] text-cyan-300">
+        <Sparkles size={14}/> Power Platform Developer
+      </motion.div>
+      <motion.h1 initial={{opacity:0,y:35}} animate={{opacity:1,y:0}} transition={{duration:.95,delay:.08}} className="mega max-w-[1200px]">
+        MAYANK<br/><span className="text-gradient">DANGI</span>
+      </motion.h1>
+      <div className="mt-8 grid gap-8 border-t border-white/10 pt-6 md:grid-cols-[1fr_.9fr] md:items-end">
+        <motion.p initial={{opacity:0}} animate={{opacity:1}} transition={{delay:.35,duration:.8}} className="max-w-2xl text-lg leading-8 text-slate-300">
+          I build low-code systems, automation and data experiences that turn business complexity into something people can actually use.
         </motion.p>
-        <motion.div initial={{opacity:0,y:24}} animate={{opacity:1,y:0}} transition={{duration:.8,delay:.28}} className="mt-7 grid gap-3 sm:flex sm:flex-wrap">
-          <a href="#system" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-5 py-3 text-sm font-extrabold text-slate-950">Enter the system <ArrowRight size={17}/></a>
-          <a href="#projects" className="inline-flex min-h-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[.04] px-5 py-3 text-sm font-semibold text-white">View case studies</a>
+        <motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{delay:.45,duration:.8}} className="md:text-right">
+          <a href="#world" className="inline-flex items-center gap-2 text-sm font-bold text-white">ENTER THE POWERVERSE <ArrowDownRight size={17}/></a>
         </motion.div>
       </div>
-
-      <motion.div initial={{opacity:0,scale:.96,y:16}} animate={{opacity:1,scale:1,y:0}} transition={{duration:.95,delay:.18}}
-        className="insane-card rounded-[1.7rem] p-4 sm:p-6">
-        <div className="flex flex-wrap justify-between gap-2 text-[10px] uppercase tracking-[.13em] text-slate-600 sm:text-xs"><span>solution://enterprise-p2p</span><span className="text-emerald-400">● live</span></div>
-        <div className="mt-6 grid grid-cols-2 gap-2.5 sm:gap-3">
-          {[["50+","Dataverse tables"],["6","BPF stages"],["AI","Invoice extraction"],["E2E","P2P lifecycle"]].map(([a,b])=><div key={b} className="rounded-2xl border border-white/10 bg-white/[.025] p-4">
-            <div className="text-xl font-semibold text-white sm:text-2xl">{a}</div><div className="mt-1 text-[11px] text-slate-500 sm:text-xs">{b}</div>
-          </div>)}
-        </div>
-        <div className="mt-4 rounded-2xl border border-white/10 bg-white/[.02] p-4">
-          <div className="flex items-center gap-2 text-sm font-semibold"><Bot size={16} className="text-cyan-400"/> Automation chain</div>
-          <div className="mt-4 grid grid-cols-4 gap-2 sm:flex sm:flex-wrap">
-            {stages.map(s=><span key={s} className="flow-pulse flex min-h-9 items-center justify-center rounded-lg border border-white/10 px-2 text-center text-[10px] text-slate-400 sm:text-xs">{s}</span>)}
-          </div>
-        </div>
-      </motion.div>
     </section>
 
-    <section id="system" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 md:px-10 md:py-24">
-      <Reveal><div className="text-xs font-bold uppercase tracking-[.23em] text-cyan-400">Interactive architecture</div>
-      <h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-[-.04em] text-white sm:text-4xl md:text-5xl">A living map of the platform.</h2></Reveal>
-
-      <Reveal className="mt-10">
-        <div className="insane-card relative min-h-[520px] rounded-[1.8rem] p-5 sm:min-h-[470px] sm:p-7">
-          <div className="absolute left-1/2 top-1/2 grid h-32 w-32 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-cyan-400/30 bg-cyan-400/[.08] text-center text-sm font-black shadow-[0_0_70px_rgba(34,211,238,.14)] sm:h-40 sm:w-40">
-            DATAVERSE<br/>CORE
-          </div>
-          {[
-            ["Power Apps","Canvas + Model Driven","left-3 top-8 sm:left-[8%] sm:top-[12%]","float-a"],
-            ["Power Automate","approvals + orchestration","right-3 top-12 sm:right-[8%] sm:top-[15%]","float-b"],
-            ["Power Pages","vendor onboarding","left-3 bottom-10 sm:left-[8%] sm:bottom-[13%]","float-b"],
-            ["Power BI","KPI visibility","right-3 bottom-10 sm:right-[8%] sm:bottom-[13%]","float-a"],
-            ["AI Processing","invoice extraction","left-1/2 top-5 -translate-x-1/2 sm:top-8","float-a"],
-          ].map(([t,s,pos,anim])=><div key={t} className={`absolute ${pos} ${anim} max-w-[145px] rounded-2xl border border-white/10 bg-[#080e18]/95 p-3 text-xs shadow-xl sm:max-w-none sm:p-4`}>
-            <div className="font-semibold text-white">{t}</div><div className="mt-1 text-[10px] text-slate-600 sm:text-xs">{s}</div>
-          </div>)}
+    <section id="world" className="mx-auto max-w-[1400px] px-4 py-24 sm:px-6 md:px-10 md:py-32">
+      <Reveal>
+        <div className="kicker">01 // capability world</div>
+        <h2 className="mt-4 max-w-4xl text-4xl font-semibold tracking-[-.05em] text-white sm:text-6xl md:text-7xl">A visual map of what I work with.</h2>
+      </Reveal>
+      <Reveal className="mt-12">
+        <div className="orbit rounded-[2rem]">
+          <div className="core">DATAVERSE<br/>CORE</div>
+          <div className="satellite left-[5%] top-[10%] sm:left-[10%]">POWER APPS</div>
+          <div className="satellite right-[4%] top-[14%] sm:right-[10%] [animation-delay:.6s]">AUTOMATE</div>
+          <div className="satellite left-[4%] bottom-[15%] sm:left-[10%] [animation-delay:1.2s]">POWER PAGES</div>
+          <div className="satellite right-[5%] bottom-[13%] sm:right-[10%] [animation-delay:1.8s]">POWER BI</div>
+          <div className="satellite left-1/2 top-[5%] -translate-x-1/2 [animation-delay:2.4s]">AI AUTOMATION</div>
+          <div className="satellite left-1/2 bottom-[5%] -translate-x-1/2 [animation-delay:3s]">JAVASCRIPT</div>
+          <div className="absolute inset-x-5 bottom-5 text-center text-[10px] uppercase tracking-[.18em] text-slate-600">Conceptual visualization only — no client architecture exposed.</div>
         </div>
       </Reveal>
     </section>
 
-    <section id="projects" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 md:px-10 md:py-24">
-      <Reveal><div className="text-xs font-bold uppercase tracking-[.23em] text-cyan-400">Case studies</div>
-      <h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-[-.04em] text-white sm:text-4xl md:text-5xl">Projects presented like products.</h2></Reveal>
-      <div className="mt-10 grid gap-4 md:grid-cols-2">
-        <ProjectCard featured eyebrow="Flagship enterprise solution" title="Procure-to-Pay Command Center"
-          description="End-to-end procurement architecture built on Microsoft Power Platform, spanning procurement, logistics, finance and vendor operations."
-          bullets={["Demand → PR → RFQ → Quotation → PO → ASN → GRN → Invoice → Payment","50+ Dataverse tables across enterprise modules","Cross-table BPF and stage automation","JavaScript form logic and command customizations","Power Automate approvals and orchestration","AI-assisted invoice extraction","Power Pages vendor onboarding","SharePoint and Power BI integration"]}
-          stack={["Model-Driven Apps","Canvas Apps","Dataverse","Power Automate","JavaScript","Power Pages","Power BI","AI"]}/>
-        <div className="insane-card relative rounded-3xl p-5 sm:p-7">
-          <div className="scan-line"/><div className="text-[10px] font-bold uppercase tracking-[.2em] text-cyan-400 sm:text-xs">Live logic</div>
-          <h3 className="mt-2 text-xl font-semibold text-white sm:text-2xl">Automation Terminal</h3>
-          <pre className="mt-5 overflow-x-auto rounded-2xl border border-white/10 bg-black/30 p-4 text-[11px] leading-7 text-slate-400 sm:text-xs"><code>{`if (invoice.received) {
-  AI.extract(invoice);
-  Dataverse.create(record);
-  Flow.route("approval");
-}`}</code></pre>
+    <section id="work" className="mx-auto max-w-[1400px] px-4 py-24 sm:px-6 md:px-10 md:py-32">
+      <Reveal>
+        <div className="kicker">02 // selected work</div>
+        <h2 className="mt-4 max-w-5xl text-4xl font-semibold tracking-[-.05em] text-white sm:text-6xl md:text-7xl">Real capability. Public-safe detail.</h2>
+      </Reveal>
+
+      <div className="mt-12">
+        {[
+          ["01","Enterprise Process Automation","Built and contributed to enterprise low-code solutions using Model-Driven and Canvas Apps, Dataverse, workflow automation and reporting.","Power Apps · Dataverse · Power Automate · JavaScript"],
+          ["02","AI-assisted Document Processing","Implemented automation that extracts structured information from invoices and routes it into downstream business processes.","Power Automate · AI extraction · Dataverse"],
+          ["03","Asset & Task Management","Developed a low-code management solution with relational data, workflow automation, dashboards and intelligent interaction.","Power Apps · Dataverse · Power BI · Copilot"]
+        ].map(([n,t,d,s])=><Reveal key={n}>
+          <article className="case grid gap-5 md:grid-cols-[100px_1fr_1fr_auto] md:items-center">
+            <div className="text-xs text-slate-600">{n}</div>
+            <h3 className="case-title text-2xl font-semibold tracking-[-.03em] text-white sm:text-3xl">{t}</h3>
+            <p className="max-w-xl text-sm leading-7 text-slate-400">{d}</p>
+            <div className="flex items-center gap-2 text-xs text-cyan-300">{s}<ArrowUpRight size={14}/></div>
+          </article>
+        </Reveal>)}
+      </div>
+
+      <Reveal className="mt-20">
+        <div className="grid gap-8 lg:grid-cols-2">
+          <div>
+            <div className="kicker">Fictional demo // workflow motion</div>
+            <h3 className="mt-3 text-3xl font-semibold tracking-[-.04em] text-white sm:text-4xl">Watch a record move through a generic process.</h3>
+            <p className="mt-4 max-w-xl leading-7 text-slate-400">This animation demonstrates process-orchestration thinking without exposing any confidential client logic.</p>
+          </div>
+          <div className="overflow-x-auto pb-2">
+            <div className="workflow-track">
+              {["Request","Review","Approve","Order","Receive","Invoice","Complete"].map(s=><div key={s} className="stage">{s}</div>)}
+            </div>
+          </div>
         </div>
-        <ProjectCard eyebrow="Productivity system" title="Asset Flow Next"
-          description="Low-code task and asset management application with workflow automation, operational reporting and Copilot-assisted interaction."
-          bullets={["Power Apps task and asset interface","Relational Dataverse model","Notifications and approvals","Power BI KPI visibility","Copilot-assisted interaction"]}
-          stack={["Power Apps","Dataverse","Power Automate","Power BI","Copilot"]}/>
+      </Reveal>
+
+      <Reveal className="mt-24">
+        <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
+          <div className="mock-invoice">
+            <div className="scan"/>
+            <div className="text-xs font-bold uppercase tracking-[.2em] text-slate-500">Demo Invoice</div>
+            <div className="mt-7 text-3xl font-black">INVOICE #DEMO-2049</div>
+            <div className="mt-7 grid grid-cols-2 gap-4 text-sm">
+              <div><b>Vendor</b><br/>Northstar Supplies</div>
+              <div><b>Date</b><br/>08 Aug 2026</div>
+              <div><b>Amount</b><br/>₹48,750</div>
+              <div><b>Reference</b><br/>PO-DEMO-888</div>
+            </div>
+            <div className="mt-8 text-[10px] uppercase tracking-[.18em] text-slate-500">Synthetic sample — not a real client document</div>
+          </div>
+          <div>
+            <div className="kicker">Fictional demo // AI document processing</div>
+            <h3 className="mt-3 text-3xl font-semibold tracking-[-.04em] text-white sm:text-4xl">From document to structured data.</h3>
+            <div className="codebox mt-6 text-xs leading-7">
+              <div>scan.document()</div>
+              <div className="text-cyan-300">✓ vendor extracted</div>
+              <div className="text-cyan-300">✓ invoice number extracted</div>
+              <div className="text-cyan-300">✓ amount extracted</div>
+              <div className="text-cyan-300">✓ reference extracted</div>
+              <div className="mt-2 text-violet-300">Dataverse.create(record)</div>
+              <div className="text-emerald-300">SUCCESS</div>
+            </div>
+          </div>
+        </div>
+      </Reveal>
+    </section>
+
+    <section className="mx-auto max-w-[1400px] px-4 py-24 sm:px-6 md:px-10 md:py-32">
+      <Reveal>
+        <div className="kicker">03 // stack</div>
+        <h2 className="mt-4 max-w-4xl text-4xl font-semibold tracking-[-.05em] text-white sm:text-6xl md:text-7xl">Built around Microsoft. Extended with code.</h2>
+      </Reveal>
+      <div className="mt-10 flex flex-wrap gap-3">
+        {publicSkills.map((s,i)=><Reveal key={s} delay={i*.025}><span className="inline-flex rounded-full border border-white/10 bg-white/[.025] px-4 py-2 text-sm text-slate-300">{s}</span></Reveal>)}
       </div>
     </section>
 
-    <section id="skills" className="border-y border-white/5 bg-white/[.012]">
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 md:px-10 md:py-24">
-        <Reveal><div className="text-xs font-bold uppercase tracking-[.23em] text-cyan-400">Capabilities</div>
-        <h2 className="mt-4 text-3xl font-semibold tracking-[-.04em] text-white sm:text-4xl md:text-5xl">Power Platform, data and automation.</h2></Reveal>
-        <div className="mt-10 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-          {skillGroups.map((g,i)=>{const Icon=g.icon;return <Reveal key={g.title} delay={i*.04}><div className="insane-card h-full rounded-3xl p-5 sm:p-6">
-            <Icon className="text-cyan-400" size={21}/><h3 className="mt-4 text-lg font-semibold text-white">{g.title}</h3>
-            <div className="mt-4 flex flex-wrap gap-2">{g.items.map(x=><span key={x} className="rounded-full border border-white/10 bg-white/[.035] px-3 py-1.5 text-[11px] text-slate-300">{x}</span>)}</div>
-          </div></Reveal>})}
-        </div>
-      </div>
+    <section id="play" className="mx-auto max-w-[1400px] px-4 py-24 sm:px-6 md:px-10 md:py-32">
+      <Reveal>
+        <div className="kicker">04 // because portfolios can be fun</div>
+        <h2 className="mt-4 max-w-4xl text-4xl font-semibold tracking-[-.05em] text-white sm:text-6xl md:text-7xl">A tiny game. Zero business value. Maximum vibes.</h2>
+      </Reveal>
+      <Reveal className="mt-12"><AutomationGame/></Reveal>
+      <Reveal className="mt-8"><p className="editorial text-2xl text-slate-400 sm:text-3xl">“Power level calculation is highly questionable.”</p></Reveal>
     </section>
 
-    <section id="contact" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 md:px-10 md:py-24">
-      <Reveal><div className="insane-card rounded-[1.8rem] border-cyan-400/15 bg-gradient-to-br from-cyan-400/[.08] to-violet-500/[.08] p-6 sm:p-10 md:p-14">
-        <div className="text-xs font-bold uppercase tracking-[.23em] text-cyan-300">Final call</div>
-        <h2 className="mt-4 max-w-4xl text-3xl font-semibold tracking-[-.045em] text-white sm:text-4xl md:text-6xl">Need someone who can build beyond forms and flows?</h2>
-        <p className="mt-5 max-w-2xl text-[15px] leading-7 text-slate-300 sm:text-lg">Let’s build systems people actually enjoy using.</p>
-        <div className="mt-7 grid gap-3 sm:flex">
-          <a href="mailto:mayankdangii61@gmail.com" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-bold text-slate-950"><Mail size={17}/> Email me</a>
-          <a target="_blank" href="https://www.linkedin.com/in/mayank-dangi-737101295" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[.04] px-5 py-3 text-sm font-semibold text-white"><Linkedin size={17}/> LinkedIn</a>
+    <section id="contact" className="mx-auto max-w-[1400px] px-4 pb-16 pt-24 sm:px-6 md:px-10 md:pt-32">
+      <Reveal>
+        <div className="soft-line pt-8">
+          <div className="kicker">05 // contact</div>
+          <h2 className="mt-5 max-w-6xl text-5xl font-semibold tracking-[-.06em] text-white sm:text-7xl md:text-[8rem] md:leading-[.9]">LET&apos;S BUILD<br/><span className="text-gradient">SOMETHING USEFUL.</span></h2>
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-400">Open to Power Platform Developer and Consultant opportunities across India and relocation.</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href="mailto:mayankdangii61@gmail.com" className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-black"><Mail size={17}/> Email me</a>
+            <a href="https://www.linkedin.com/in/mayank-dangi-737101295" target="_blank" className="inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-3 text-sm font-semibold text-white"><Linkedin size={17}/> LinkedIn</a>
+          </div>
         </div>
-      </div></Reveal>
+      </Reveal>
+      <footer className="mt-16 flex flex-col gap-3 border-t border-white/10 py-6 text-xs text-slate-600 sm:flex-row sm:justify-between">
+        <span>© 2026 Mayank Dangi</span>
+        <span>Next.js · Motion · A little anime energy ⚡</span>
+      </footer>
     </section>
   </main>
 }
